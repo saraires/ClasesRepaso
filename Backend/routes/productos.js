@@ -2,6 +2,8 @@ const express = require('express');
 const { cnn_mysql } = require('../db/conexion'); // es la variable que exportamos de nuestro archivo de conexion...
 const router = express.Router();
 
+// Peticiones GET
+
 // Traer productos
 router.get('/obtenerproductos', (req, res) => { // creamos la ruta a la que vamos a hacer las peticiones
     cnn_mysql.query('SELECT * FROM articulos', (error, resultset, field) => { // ejecutamos un query, recordemos siempre tener una manejo de errores con un try-catch
@@ -25,6 +27,7 @@ router.get('/obtenerproductos/:id', (req, res) => {
     });
 });
 
+// Peticiones POST
 
 // Agregar productos
 router.post('/cargarproductos', async (req, res) => {
@@ -50,6 +53,7 @@ router.post('/cargarproductos', async (req, res) => {
     }
 });
 
+// Peticiones PUT
 
 // Editar productos por id
 
@@ -78,6 +82,8 @@ router.put("/actualizarorden/:id", async (req, res) => {
 
 
 });
+
+// Peticiones DELETE
 
 // Eliminar datos (todo en la bd)
 router.delete('/eliminarproductos', (req, res) => {
